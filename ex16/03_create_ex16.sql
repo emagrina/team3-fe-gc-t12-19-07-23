@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS ex16;
+
 USE ex16;
 
 CREATE TABLE usuarios (
@@ -20,10 +21,7 @@ CREATE TABLE mensajes (
     fecha DATE
 );
 
-CREATE TABLE hashtags (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(50)
-);
+CREATE TABLE hashtags (id INT PRIMARY KEY, nombre VARCHAR(50));
 
 CREATE TABLE retweets (
     id INT PRIMARY KEY,

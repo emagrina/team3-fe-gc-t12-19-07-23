@@ -20,27 +20,27 @@ CREATE TABLE asignaturas (
     curso_ciclo VARCHAR(255),
     codigo_interno_curso INT,
     numero_aula INT,
-    FOREIGN KEY (numero_aula) REFERENCES aulas(numero)
+    FOREIGN KEY (numero_aula) REFERENCES aulas(numero) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE horarios_asignaturas (
     codigo_horario INT,
     codigo_interno_centro INT,
-    FOREIGN KEY (codigo_horario) REFERENCES horarios(codigo),
-    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro)
+    FOREIGN KEY (codigo_horario) REFERENCES horarios(codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE aulas_asignaturas (
     numero_aula INT,
     codigo_interno_centro INT,
-    FOREIGN KEY (numero_aula) REFERENCES aulas(numero),
-    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro)
+    FOREIGN KEY (numero_aula) REFERENCES aulas(numero) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE asignaturas_requeridas (
     codigo_interno_centro INT,
     asignatura_requerida VARCHAR(255),
-    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro)
+    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE profesores (
@@ -59,8 +59,8 @@ CREATE TABLE profesores (
 CREATE TABLE profesores_asignaturas (
     codigo_interno_profesor INT,
     codigo_interno_centro INT,
-    FOREIGN KEY (codigo_interno_profesor) REFERENCES profesores(codigo_interno_profesor),
-    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro)
+    FOREIGN KEY (codigo_interno_profesor) REFERENCES profesores(codigo_interno_profesor) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (codigo_interno_centro) REFERENCES asignaturas(codigo_interno_centro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ciclos (
@@ -74,7 +74,7 @@ CREATE TABLE ciclos (
 CREATE TABLE profesores_ciclos (
     codigo_interno_profesor INT,
     codigo_interno_curso INT,
-    FOREIGN KEY (codigo_interno_profesor) REFERENCES profesores(codigo_interno_profesor),
-    FOREIGN KEY (codigo_interno_curso) REFERENCES ciclos(codigo_interno_curso)
+    FOREIGN KEY (codigo_interno_profesor) REFERENCES profesores(codigo_interno_profesor) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (codigo_interno_curso) REFERENCES ciclos(codigo_interno_curso) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
